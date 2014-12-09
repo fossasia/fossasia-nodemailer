@@ -1,0 +1,27 @@
+extends layout
+
+block content
+  form(method="POST" action="/")
+    div.msg= flash
+    div From:
+    div fossasia@gmail.com
+    label
+      span To: 
+      input(type="email" name="to" placeholder="foo@gmail.com" required)
+
+    label
+      span Subject: 
+      input(type="text" name="subject" placeholder="Go FOSSASIA!" required)
+
+    label
+      span Message: 
+      textarea(name="message" required)
+
+    button Send Email
+
+  article
+    h1 Demo mailer made in Node JS for FOSSASIA
+    p Made using Express and Nodemailer for FOSSASIA, Google Code In.
+    p Currently handled through Gmail, can be configured to use other services such as Outlook; or even server's SMPT.
+    p Source attached (without Gmail authentication).
+    p Made with <span class="heart">♥</span> for Code-In

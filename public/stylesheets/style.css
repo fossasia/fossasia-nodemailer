@@ -1,0 +1,57 @@
+body {
+  margin: 3em auto 6em;
+  width: 30em;
+}
+body,
+input,
+textarea,
+button {
+  font-size: 100%;
+  font-family: 'Segoe UI';
+  line-height: 1.75;
+}
+label {
+  display: block;
+  margin: 1em 0 0.5em;
+}
+label span {
+  display: block;
+  margin-bottom: 0.5em;
+}
+input,
+textarea {
+  padding: 1em;
+  border: thin solid #e6e6e6;
+  display: block;
+  width: 100%;
+  box-sizing: border-box;
+}
+textarea {
+  resize: none;
+  height: 20em;
+}
+form {
+  font-size: 125%;
+}
+button {
+  background: #87ceeb;
+  border: 0;
+  padding: 1em;
+  color: #fff;
+  display: block;
+  cursor: pointer;
+  width: 100%;
+  box-sizing: border-box;
+  margin-top: 1em;
+}
+.msg {
+  color: #999;
+  font-style: italic;
+  margin-bottom: 1em;
+}
+article {
+  margin: 3em 0 0;
+}
+.heart {
+  color: #ff69b4;
+}
