@@ -1,20 +1,9 @@
 var express = require('express');
+var flash = require('connect-flash');
+
+var mailer = require('../mailer/mailer');
+
 var router = express.Router();
-var fs = require('fs');
-
-var nodemailer = require('nodemailer');
-
-var flash = require('connect-flash')
-
-var transporter = nodemailer.createTransport({
-    service: 'Gmail',
-    auth: {
-        user: 'fossasia@fossasia.com',
-        pass: 'password'
-    }
-});
-
-
 
 /* GET home page. */
 router.get('/', function(req, res) {
@@ -22,22 +11,22 @@ router.get('/', function(req, res) {
 });
 
 router.post('/', function(req, res) {
-  transporter.sendMail({
-
+  var email =  {
     from: 'Fossasia <fossasia@fossasia.com>',
     to: req.body.to,
     subject: req.body.subject, 
     text: req.body.message,
+  };
 
-  }, function(error, info){
+  mailer.send(email, function(error, info){
 
-      if ( error ) {
-          req.flash('info', error)
-      } else {
-          req.flash('info', 'Email sent sucessfully!')
-      }
+    if ( error ) {
+        req.flash('info', error);
+    } else {
+        req.flash('info', 'Email sent sucessfully!');
+    }
 
-      res.render('index', { flash: req.flash('info') });
+    res.render('index', { flash: req.flash('info') });
   });
 
 });
