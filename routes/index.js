@@ -10,8 +10,8 @@ router.get('/', function(req, res) {
   res.render('index', { flash: req.flash('info') });
 });
 
-router.post('/', function(req, res) {
-  var email =  {
+function rootPost(req, res) {
+    var email =  {
     from: 'Fossasia <fossasia@fossasia.com>',
     to: req.body.to,
     subject: req.body.subject, 
@@ -28,8 +28,9 @@ router.post('/', function(req, res) {
 
     res.render('index', { flash: req.flash('info') });
   });
+}
 
-});
+router.post('/', rootPost);
 
-
-module.exports = router;
+exports.rootPost = rootPost;
+exports.router = router;
