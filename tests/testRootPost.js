@@ -7,7 +7,7 @@ var assert = require('assert');
 
 describe('/ request (post)', function() {
   this.timeout(5000)
-  it('should call mailer with dummy body and used body being the same', function(done){
+  it('should call mailer with proper dummy body and reach "render"', function(done){
     var testRequest = {};
 
     testRequest.body =  {
@@ -15,27 +15,40 @@ describe('/ request (post)', function() {
       subject: 'Test', 
       message: 'Test',
     };
+
+    testRequest.flash = sinon.spy();
+
+    testResponse = {
+      render: function() {
+        console.log( '      -', testRequest.flash.args[0][1] )
+
+        if ( testRequest.flash.args[0][1] == 'Email sent sucessfully!' )
+          done();
+      }
+    }; 
+
     
-    var mailerSpy = sinon.stub(mailer, 'send', function() {
+    var mailerSpy = sinon.stub(mailer, 'send', function(arguments, callback) {
       // Compares test request body and actual body
       if ( 
-        arguments[0].to == testRequest.body.to &&
-        arguments[0].subject == testRequest.body.subject &&
-        arguments[0].text == testRequest.body.message 
+        arguments.to == testRequest.body.to &&
+        arguments.subject == testRequest.body.subject &&
+        arguments.text == testRequest.body.message 
       ) {
-        done();
+        console.log('      - Given arguments match used arguments')
+        callback();
       }
 
       else {
-        console.log('Body does not match');
+        console.log('      - Body does not match');
       }
 
       return false;
     });
 
-    routes.rootPost(testRequest, {});
 
 
+    routes.rootPost(testRequest, testResponse);
 
   });
 });
