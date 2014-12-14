@@ -11,7 +11,7 @@ router.get('/', function(req, res) {
 });
 
 function rootPost(req, res) {
-    var email =  {
+  var email =  {
     from: 'Fossasia <fossasia@fossasia.com>',
     to: req.body.to,
     subject: req.body.subject, 
@@ -25,6 +25,7 @@ function rootPost(req, res) {
     } else {
         req.flash('info', 'Email sent sucessfully!');
     }
+
 
     res.render('index', { flash: req.flash('info') });
   });
