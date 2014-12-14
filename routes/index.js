@@ -18,6 +18,7 @@ function rootPost(req, res) {
     text: req.body.message,
   };
 
+
   mailer.send(email, function(error, info){
 
     if ( error ) {
