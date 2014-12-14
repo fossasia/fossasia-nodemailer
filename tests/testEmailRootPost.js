@@ -16,17 +16,13 @@ describe('/ request (post)', function(){
     testRequest.flash = sinon.spy();
 
     testResponse = {
-      render: sinon.spy()
+      render: function() {
+        console.log( '    ', testRequest.flash.args[0][1] )
+        if ( testRequest.flash.args[0][1] == 'Email sent sucessfully!' )
+          done();
+      }
     }; 
 
     routes.rootPost(testRequest, testResponse);
-
-
-    setTimeout(function() {
-      if ( testResponse.flash.calledOnce ) {
-        console.log( '    ', testRequest.flash.args[0][1] )
-        done();
-      }
-    }, 15000)
   });
 });
