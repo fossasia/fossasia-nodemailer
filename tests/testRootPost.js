@@ -22,26 +22,20 @@ describe('/ request (post)', function() {
       render: function() {
         console.log( '      -', testRequest.flash.args[0][1] )
 
-        if ( testRequest.flash.args[0][1] == 'Email sent sucessfully!' )
-          done();
+        assert.equal(testRequest.flash.args[0][1], 'Email sent sucessfully!')
+        done();
       }
     }; 
 
     
     var mailerSpy = sinon.stub(mailer, 'send', function(arguments, callback) {
       // Compares test request body and actual body
-      if ( 
-        arguments.to == testRequest.body.to &&
-        arguments.subject == testRequest.body.subject &&
-        arguments.text == testRequest.body.message 
-      ) {
-        console.log('      - Given arguments match used arguments')
-        callback();
-      }
+      assert.equal( arguments.to, testRequest.body.to, 'To field does not match' );
+      assert.equal( arguments.subject, testRequest.body.subject, 'Subject does not match' );
+      assert.equal( arguments.text, testRequest.body.message, 'Message body does not match' );
+      console.log('      - Given arguments match used arguments')
 
-      else {
-        console.log('      - Body does not match');
-      }
+      callback();
 
       return false;
     });
