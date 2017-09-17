@@ -2,21 +2,36 @@ mailer
 ======
 This is a small node js server that can send emails using [nodemailer](https://www.npmjs.com/package/nodemailer).
 
-## Running
+## Prerequisites
+You will need the following things properly installed on your computer.
 
-`git clone https://github.com/fossasia/mailer.git`  
-`cd mailer`
+- Git
+- Node.js (with NPM v5.2x)
+## Installation
 
-Install dependancies.
+- ```git clone https://github.com/fossasia/mailer.git```
 
-`npm install`
+- ```cd mailer```
 
-Visit localhost:3100 on your browser.
+- ```npm install``` To install dependencies
 
-You can actually make it send emails using your gmail account. However it might involve you clearing some security for your account. Proceed at your own risk.
+- ```cp config.json.dist config.json``` Copy config files
 
-copy the config files:
+- Edit ```config.json``` with your gmail username and password.
 
-`cp config.json.dist config.json`
+## Running/Development
 
-Edit config.json with your gmail username and password. Fire up the mail server again. Send emails!
+- ```npm start```
+- Visit http://localhost:3100 on your browser.
+
+You can actually make it to send emails using your gmail account. 
+
+### Note
+You will have to allow Less Secure apps from https://myaccount.google.com/lesssecureapps
+
+Proceed at your own risk.
+
+## License
+
+This project is currently licensed under the GNU General Public License v3.0. A copy of LICENSE should be present along with the source code. To obtain the software under a different license, please contact (FOSSASIA)[http://blog.fossasia.org/contact]
+
